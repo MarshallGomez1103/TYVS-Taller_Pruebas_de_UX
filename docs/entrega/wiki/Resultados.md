@@ -31,4 +31,4 @@ Las tres referencias de la entrega están en `playwright/tests/modulo4-visual.sp
 
 Las pruebas verdes no sustituyen a la sesión con personas ni a una auditoría manual completa. Las comprobaciones de teclado y regiones de anuncio no equivalen a una sesión con un lector de pantalla real. La independencia se sometió a ejecución paralela repetida; los documentos aleatorios minimizan las colisiones pero no ofrecen unicidad matemática absoluta.
 
-La inspección del grupo C fue asistida, con evidencia de los estados del navegador y sin búsqueda a ciegas. Los resultados de las sesiones son autorreportados y sus límites se documentan en Usabilidad. La corrida remota exacta se consulta en Actions. El módulo opcional de IA se conserva como material del profesor y no se presenta como ejecutado.
+La inspección del grupo C fue asistida y conserva evidencia de los estados del navegador. Los resultados de las sesiones son autorreportados y sus límites se documentan en Usabilidad. La corrida remota exacta se consulta en Actions. El módulo opcional de IA se conserva como material del profesor y no se presenta como ejecutado.

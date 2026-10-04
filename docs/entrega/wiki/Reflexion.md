@@ -1,4 +1,12 @@
-# Reflexión técnica
+# Reflexión sobre UI, UX y accesibilidad
+
+## Por qué importa diseñar para quien usa el sistema
+
+Para mí, que el software funcione también implica que la persona pueda entenderlo y utilizarlo. Como programador conozco las reglas, el propósito de cada campo y lo que significa una respuesta del sistema. Una persona que llega por primera vez no tiene ese contexto: la interfaz debe guiarla, incluso si tiene poca experiencia con un celular o no sabe qué es un sistema operativo.
+
+El ejemplo que uso es un niño con un iPad: puede aprender a interactuar sin conocer los detalles del sistema operativo, porque la interfaz ofrece señales y acciones que puede reconocer. Es una analogía para explicar mi idea, no una prueba realizada en este taller. Mi objetivo con UI/UX es reducir las barreras para personas con distintos conocimientos y necesidades, sin asumir que piensan como quien programó la aplicación.
+
+La UI aporta etiquetas, contraste, controles y señales de foco. La UX también incluye comprender qué pasó, recuperarse de un error y completar la tarea con confianza. La accesibilidad amplía ese objetivo a quienes navegan con teclado, usan lectores de pantalla o necesitan mayor legibilidad.
 
 ## Lo que la automatización no explicó
 

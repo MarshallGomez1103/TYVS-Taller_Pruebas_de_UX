@@ -1,6 +1,6 @@
 # Taller de Pruebas de UI y UX
 
-**Entrega: Elioth Gomez.** [Trabajo desarrollado, ejecución y pendientes](docs/entrega/LEEME.md).
+**Entrega: Elioth Gomez.** [Entrega, ejecución y resultados](docs/entrega/LEEME.md).
 
 El material y los ejemplos de base son del profesor César Augusto Vega Fernández. Las modificaciones, mediciones de esta entrega y su estado están documentados por separado.
 

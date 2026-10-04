@@ -33,4 +33,4 @@ Comprobar que la interfaz aplica las reglas de inscripción y analizar si las pe
 | Evaluación de participantes | 5 personas; 20 éxitos y 0 abandonos reportados |
 | SUS promedio | 78,5/100; rango bueno según el protocolo |
 
-Los JSON y las respuestas anonimizadas se conservan en [docs/entrega](../LEEME.md). Las sesiones se registraron mediante respuestas en texto; fechas y versiones exactas no fueron aportadas. La revisión del grupo C fue asistida y no se presenta como búsqueda a ciegas. Cada sección distingue resultados medidos, autorreportados y propuestas pendientes de validar.
+Los JSON y las respuestas anonimizadas se conservan en [docs/entrega](../LEEME.md). Las sesiones se registraron mediante respuestas en texto; fechas y versiones exactas no fueron aportadas. La revisión del grupo C fue asistida; su método y evidencia están en Accesibilidad. Cada sección distingue resultados medidos, autorreportados y propuestas pendientes de validar.

@@ -32,7 +32,7 @@ Java: `mvn -f registraduria/pom.xml clean verify`. Selenium necesita el JAR ejec
 
 Los resultados numéricos están en [evidencias](evidencias/) y la [evaluación de participantes](wiki/Usabilidad.md). Los tiempos y errores fueron autorreportados; las fechas exactas, versiones y navegadores de las sesiones no se aportaron. Se conservaron los relatos aun cuando no coinciden literalmente con el texto de la interfaz.
 
-La revisión de accesibilidad fue asistida con conocimiento previo del material y no equivale a una búsqueda a ciegas ni a una sesión con lector de pantalla real. Las referencias visuales se verificaron en Linux; las originales de Windows no se revalidaron tras el cambio de texto. CI excluye el módulo visual por las diferencias de fuentes.
+La revisión de accesibilidad fue asistida, con consulta previa del material y comprobaciones del navegador y su estructura. Su método se documenta en Accesibilidad; no incluyó una sesión con lector de pantalla real. Las referencias visuales se verificaron en Linux; las originales de Windows no se revalidaron tras el cambio de texto. CI excluye el módulo visual por las diferencias de fuentes.
 
 `npm run test:regresion:demo`, desde playwright, provoca una cabecera roja únicamente en su contexto y debe fallar con diff. No modifica el CSS del repositorio y no forma parte de la suite normal.
 
@@ -40,4 +40,8 @@ El material base y su licencia son del profesor César Augusto Vega Fernández. 
 
 ## Explicación breve
 
-«Java aplica las reglas de inscripción y Playwright/Selenium manejan el navegador para comprobarlas. El Page Object reúne los campos y acciones. Encontramos y corregimos el truncamiento de decimales y el texto ambiguo de los 18 años. axe y las capturas aportaron evidencia técnica; las cinco personas completaron las tareas y su SUS promedio fue 78,5, aunque reportaron dificultades con el foco, los mensajes y el formato del documento. Esas percepciones necesitan una segunda validación y no desaparecen solo porque las pruebas salgan verdes.»
+«Para mí, que el software funcione también significa que la persona pueda entenderlo y utilizarlo. Como programador ya sé cómo funciona, pero la interfaz debe guiar a alguien que llega por primera vez y tiene poca experiencia con la tecnología. Es como el ejemplo de un niño con un iPad: no necesita conocer el sistema operativo para reconocer las acciones que la pantalla le ofrece.
+
+En este taller, Java aplica las reglas de inscripción y Playwright/Selenium comprueban el formulario desde el navegador. Corregimos el truncamiento de decimales y la ayuda ambigua de los 18 años. Las cinco personas reportaron completar las tareas y el SUS promedio fue 78,5, aunque señalaron dificultades con el foco, los mensajes y el formato del documento.
+
+Los siete hallazgos de la pantalla defectuosa muestran por qué también importan las etiquetas permanentes, las descripciones de imágenes, un foco visible, las casillas claras, las confirmaciones accesibles, los enlaces descriptivos y los errores que explican cómo corregir. La misión de UI/UX es reducir las barreras para personas con diferentes conocimientos y necesidades; por eso combinamos pruebas técnicas con la experiencia de quienes usan la aplicación.»

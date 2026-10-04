@@ -23,9 +23,9 @@ Sobre `/defectuosa.html`, el filtro reportó seis reglas; sin filtro aparecieron
 
 Se prioriza **tabindex**: en la página defectuosa, Edad tiene índice 1, Documento 2 y Nombre 3, lo que fuerza un orden diferente del orden visual y de la tarea. Afecta directamente a quien navega con teclado. La ausencia de `<main>` también dificulta la orientación, pero el orden de tabulación altera cada recorrido de los campos. Esta elección es una priorización técnica de la entrega, no una medición de prevalencia.
 
-## Grupo C: guía de revisión manual asistida
+## Grupo C: siete hallazgos de la revisión asistida
 
-La revisión se realizó con asistencia de IA, inspeccionando los estados del navegador y el DOM. Se consultó el material del profesor antes de esta comprobación: **no se presenta como una búsqueda a ciegas del estudiante**. No se ejecutó una sesión con lector de pantalla real. La evidencia está en [revision-asistida.json](../evidencias/revision-asistida.json) y en la captura siguiente.
+La revisión combinó asistencia de IA, inspección de los estados del navegador y su estructura, y consulta del material del profesor. El método fue una revisión asistida. Las comprobaciones de marcado no incluyen una sesión con lector de pantalla real. La evidencia está en [revision-asistida.json](../evidencias/revision-asistida.json) y en la captura siguiente.
 
 ![Página defectuosa después de una inscripción ficticia de revisión](../evidencias/revision-defectuosa.png)
 
@@ -40,6 +40,20 @@ La revisión se realizó con asistencia de IA, inspeccionando los estados del na
 | Error «Error.» | Mensaje al enviar datos inválidos | Detectar una frase no equivale a juzgar si orienta la corrección. | Al enviar documento negativo se obtuvo exactamente Error. |
 
 La conclusión se limita a esta versión y configuración de axe. No afirma que ningún programa pudiera detectar jamás esos defectos: varios admiten reglas específicas o automatización parcial. La calidad del lenguaje y el contexto siguen necesitando juicio humano.
+
+## Qué significan los siete problemas y cómo mejorarlos
+
+| Problema | Qué le ocurre a la persona | Cambio propuesto |
+|---|---|---|
+| Nombre sin etiqueta permanente | Después de escribir, deja de ver qué dato pide el campo. | Mantener una etiqueta visible asociada al campo. |
+| Descripción de imagen genérica | El lector de pantalla dice «imagen», pero no explica qué representa. | Describir el propósito del logo; si una imagen es decorativa, usar texto alternativo vacío. |
+| Foco invisible | Al presionar Tab no sabe en qué campo o botón está. | Mostrar un contorno de foco claramente visible al usar teclado. |
+| Casilla «Estado» | No sabe qué significa marcar o desmarcar. | Usar «¿La persona está viva?» con una indicación clara de la selección. |
+| Confirmación sin anuncio | La confirmación aparece en pantalla, pero falta una región que comunique el cambio al lector de pantalla. | Anunciar la confirmación mediante una región de estado y verificarla con lector de pantalla. |
+| Enlace «Haga clic aquí» | No sabe a dónde lo llevará el enlace, especialmente al escucharlo aislado. | Escribir un nombre que describa el destino o la acción. |
+| Mensaje «Error.» | No sabe qué dato falló ni cómo corregirlo. | Explicar la causa y orientar al campo que debe corregir. |
+
+Estos hallazgos están en la pantalla de entrenamiento `defectuosa.html`, que conserva los errores deliberados del profesor para que las pruebas puedan detectarlos. Las propuestas anteriores describen cómo mejorar una interfaz de uso real. La franja roja identifica la página de entrenamiento; el bajo contraste medido por axe está en los textos de ayuda y del pie.
 
 ## Informes guardados
 
