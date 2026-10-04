@@ -1,4 +1,5 @@
 // @ts-check
+const path = require('node:path');
 const { defineConfig, devices } = require('@playwright/test');
 
 /**
@@ -15,7 +16,10 @@ module.exports = defineConfig({
   // Falla el build si alguien deja un test.only olvidado en un commit.
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
-  reporter: [['html', { open: 'never' }], ['list']],
+  workers: 2,
+  // Una referencia ausente debe fallar, no aprobarse automáticamente.
+  updateSnapshots: 'none',
+  reporter: [['html', { open: 'never' }], ['list'], ['json', { outputFile: 'test-results/resultados.json' }]],
 
   use: {
     baseURL: process.env.BASE_URL || 'http://localhost:8080',
@@ -30,10 +34,11 @@ module.exports = defineConfig({
   ],
 
   webServer: {
+    cwd: path.resolve(__dirname),
     command:
-      'java -jar ../registraduria/target/registraduria-1.0-SNAPSHOT.jar',
+      'node scripts/servidor.js',
     url: 'http://localhost:8080/actuator/health',
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: process.env.REUSE_SERVER === 'true',
     timeout: 120 * 1000,
   },
 });

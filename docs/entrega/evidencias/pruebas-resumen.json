@@ -1,0 +1,452 @@
+{
+  "estadisticas": {
+    "startTime": "2026-10-04T04:31:34.331Z",
+    "duration": 10898.471000000001,
+    "expected": 40,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "casos": [
+    {
+      "archivo": "modulo1-e2e.spec.js",
+      "titulo": "01 - La página carga con el título correcto",
+      "estado": "expected",
+      "intentos": [
+        {
+          "estado": "passed",
+          "duracionMs": 284
+        }
+      ]
+    },
+    {
+      "archivo": "modulo1-e2e.spec.js",
+      "titulo": "02 - El formulario muestra todos sus campos",
+      "estado": "expected",
+      "intentos": [
+        {
+          "estado": "passed",
+          "duracionMs": 190
+        }
+      ]
+    },
+    {
+      "archivo": "modulo1-e2e.spec.js",
+      "titulo": "03 - Registra a una persona válida",
+      "estado": "expected",
+      "intentos": [
+        {
+          "estado": "passed",
+          "duracionMs": 233
+        }
+      ]
+    },
+    {
+      "archivo": "modulo1-e2e.spec.js",
+      "titulo": "04 - Rechaza a una persona menor de edad",
+      "estado": "expected",
+      "intentos": [
+        {
+          "estado": "passed",
+          "duracionMs": 235
+        }
+      ]
+    },
+    {
+      "archivo": "modulo1-e2e.spec.js",
+      "titulo": "05 - Rechaza a una persona no viva",
+      "estado": "expected",
+      "intentos": [
+        {
+          "estado": "passed",
+          "duracionMs": 263
+        }
+      ]
+    },
+    {
+      "archivo": "modulo1-e2e.spec.js",
+      "titulo": "06 - Rechaza un documento ya inscrito",
+      "estado": "expected",
+      "intentos": [
+        {
+          "estado": "passed",
+          "duracionMs": 313
+        }
+      ]
+    },
+    {
+      "archivo": "modulo1-e2e.spec.js",
+      "titulo": "07 - Valida en el navegador antes de llamar al servicio",
+      "estado": "expected",
+      "intentos": [
+        {
+          "estado": "passed",
+          "duracionMs": 176
+        }
+      ]
+    },
+    {
+      "archivo": "modulo1-e2e.spec.js",
+      "titulo": "08 - El formulario se puede completar solo con el teclado",
+      "estado": "expected",
+      "intentos": [
+        {
+          "estado": "passed",
+          "duracionMs": 212
+        }
+      ]
+    },
+    {
+      "archivo": "modulo1-e2e.spec.js",
+      "titulo": "09 - La regla de edad imposible vive en DOS capas, y hay que probar las dos",
+      "estado": "expected",
+      "intentos": [
+        {
+          "estado": "passed",
+          "duracionMs": 225
+        }
+      ]
+    },
+    {
+      "archivo": "modulo2-pom.spec.js",
+      "titulo": "01 - Una persona adulta y viva queda inscrita",
+      "estado": "expected",
+      "intentos": [
+        {
+          "estado": "passed",
+          "duracionMs": 281
+        }
+      ]
+    },
+    {
+      "archivo": "modulo2-pom.spec.js",
+      "titulo": "02 - Una persona de 17 anios es rechazada",
+      "estado": "expected",
+      "intentos": [
+        {
+          "estado": "passed",
+          "duracionMs": 249
+        }
+      ]
+    },
+    {
+      "archivo": "modulo2-pom.spec.js",
+      "titulo": "03 - Una persona de 18 anios queda inscrita (valor limite)",
+      "estado": "expected",
+      "intentos": [
+        {
+          "estado": "passed",
+          "duracionMs": 236
+        }
+      ]
+    },
+    {
+      "archivo": "modulo2-pom.spec.js",
+      "titulo": "04 - Una persona no viva es rechazada",
+      "estado": "expected",
+      "intentos": [
+        {
+          "estado": "passed",
+          "duracionMs": 258
+        }
+      ]
+    },
+    {
+      "archivo": "modulo2-pom.spec.js",
+      "titulo": "05 - Un documento repetido es rechazado",
+      "estado": "expected",
+      "intentos": [
+        {
+          "estado": "passed",
+          "duracionMs": 330
+        }
+      ]
+    },
+    {
+      "archivo": "modulo2-pom.spec.js",
+      "titulo": "Límite adicional de edad: 0",
+      "estado": "expected",
+      "intentos": [
+        {
+          "estado": "passed",
+          "duracionMs": 252
+        }
+      ]
+    },
+    {
+      "archivo": "modulo2-pom.spec.js",
+      "titulo": "Límite adicional de edad: 16",
+      "estado": "expected",
+      "intentos": [
+        {
+          "estado": "passed",
+          "duracionMs": 236
+        }
+      ]
+    },
+    {
+      "archivo": "modulo2-pom.spec.js",
+      "titulo": "Límite adicional de edad: 120",
+      "estado": "expected",
+      "intentos": [
+        {
+          "estado": "passed",
+          "duracionMs": 235
+        }
+      ]
+    },
+    {
+      "archivo": "modulo2-pom.spec.js",
+      "titulo": "No envía nombre inválido: \"   \"",
+      "estado": "expected",
+      "intentos": [
+        {
+          "estado": "passed",
+          "duracionMs": 220
+        }
+      ]
+    },
+    {
+      "archivo": "modulo2-pom.spec.js",
+      "titulo": "No envía documento inválido: \"0\"",
+      "estado": "expected",
+      "intentos": [
+        {
+          "estado": "passed",
+          "duracionMs": 190
+        }
+      ]
+    },
+    {
+      "archivo": "modulo2-pom.spec.js",
+      "titulo": "No envía documento inválido: \"1.5\"",
+      "estado": "expected",
+      "intentos": [
+        {
+          "estado": "passed",
+          "duracionMs": 233
+        }
+      ]
+    },
+    {
+      "archivo": "modulo2-pom.spec.js",
+      "titulo": "No envía edad inválido: \"18.9\"",
+      "estado": "expected",
+      "intentos": [
+        {
+          "estado": "passed",
+          "duracionMs": 180
+        }
+      ]
+    },
+    {
+      "archivo": "modulo2-pom.spec.js",
+      "titulo": "No envía edad inválido: \"\"",
+      "estado": "expected",
+      "intentos": [
+        {
+          "estado": "passed",
+          "duracionMs": 175
+        }
+      ]
+    },
+    {
+      "archivo": "modulo2-pom.spec.js",
+      "titulo": "No envía edad inválido: \"-1\"",
+      "estado": "expected",
+      "intentos": [
+        {
+          "estado": "passed",
+          "duracionMs": 178
+        }
+      ]
+    },
+    {
+      "archivo": "modulo2-pom.spec.js",
+      "titulo": "No envía edad inválido: \"121\"",
+      "estado": "expected",
+      "intentos": [
+        {
+          "estado": "passed",
+          "duracionMs": 177
+        }
+      ]
+    },
+    {
+      "archivo": "modulo2-pom.spec.js",
+      "titulo": "La ayuda informa que 18 años también está permitido",
+      "estado": "expected",
+      "intentos": [
+        {
+          "estado": "passed",
+          "duracionMs": 229
+        }
+      ]
+    },
+    {
+      "archivo": "modulo2-pom.spec.js",
+      "titulo": "Recupera el formulario después de corregir un error",
+      "estado": "expected",
+      "intentos": [
+        {
+          "estado": "passed",
+          "duracionMs": 258
+        }
+      ]
+    },
+    {
+      "archivo": "modulo3-accesibilidad.spec.js",
+      "titulo": "01 - La página inicial no tiene violaciones detectables",
+      "estado": "expected",
+      "intentos": [
+        {
+          "estado": "passed",
+          "duracionMs": 497
+        }
+      ]
+    },
+    {
+      "archivo": "modulo3-accesibilidad.spec.js",
+      "titulo": "02 - La página con errores de validación sigue siendo accesible",
+      "estado": "expected",
+      "intentos": [
+        {
+          "estado": "passed",
+          "duracionMs": 549
+        }
+      ]
+    },
+    {
+      "archivo": "modulo3-accesibilidad.spec.js",
+      "titulo": "03 - El resultado de la inscripción se anuncia a lectores de pantalla",
+      "estado": "expected",
+      "intentos": [
+        {
+          "estado": "passed",
+          "duracionMs": 608
+        }
+      ]
+    },
+    {
+      "archivo": "modulo3-accesibilidad.spec.js",
+      "titulo": "04 - Existe un enlace para saltar al contenido principal",
+      "estado": "expected",
+      "intentos": [
+        {
+          "estado": "passed",
+          "duracionMs": 136
+        }
+      ]
+    },
+    {
+      "archivo": "modulo3-accesibilidad.spec.js",
+      "titulo": "05 - Todos los campos tienen etiqueta asociada",
+      "estado": "expected",
+      "intentos": [
+        {
+          "estado": "passed",
+          "duracionMs": 147
+        }
+      ]
+    },
+    {
+      "archivo": "modulo3b-defectos-sembrados.spec.js",
+      "titulo": "01 - Con el filtro WCAG, axe reporta exactamente el grupo A",
+      "estado": "expected",
+      "intentos": [
+        {
+          "estado": "passed",
+          "duracionMs": 466
+        }
+      ]
+    },
+    {
+      "archivo": "modulo3b-defectos-sembrados.spec.js",
+      "titulo": "02 - Sin el filtro, aparecen cuatro reglas más: el filtro decide lo que usted ve",
+      "estado": "expected",
+      "intentos": [
+        {
+          "estado": "passed",
+          "duracionMs": 468
+        }
+      ]
+    },
+    {
+      "archivo": "modulo3b-defectos-sembrados.spec.js",
+      "titulo": "03 - La misma auditoría sobre la página correcta no reporta nada",
+      "estado": "expected",
+      "intentos": [
+        {
+          "estado": "passed",
+          "duracionMs": 491
+        }
+      ]
+    },
+    {
+      "archivo": "modulo3b-defectos-sembrados.spec.js",
+      "titulo": "04 - GRUPO C: axe aprueba un placeholder usado como etiqueta; una comprobación propia no",
+      "estado": "expected",
+      "intentos": [
+        {
+          "estado": "passed",
+          "duracionMs": 523
+        }
+      ]
+    },
+    {
+      "archivo": "modulo3b-defectos-sembrados.spec.js",
+      "titulo": "05 - GRUPO C: el resultado no se anuncia a lectores de pantalla",
+      "estado": "expected",
+      "intentos": [
+        {
+          "estado": "passed",
+          "duracionMs": 197
+        }
+      ]
+    },
+    {
+      "archivo": "modulo3b-defectos-sembrados.spec.js",
+      "titulo": "06 - GRUPO C: el mensaje de error no dice cómo corregir el problema",
+      "estado": "expected",
+      "intentos": [
+        {
+          "estado": "passed",
+          "duracionMs": 235
+        }
+      ]
+    },
+    {
+      "archivo": "modulo4-visual.spec.js",
+      "titulo": "01 - El formulario vacio se ve como se espera",
+      "estado": "expected",
+      "intentos": [
+        {
+          "estado": "passed",
+          "duracionMs": 226
+        }
+      ]
+    },
+    {
+      "archivo": "modulo4-visual.spec.js",
+      "titulo": "02 - El mensaje de rechazo se ve como se espera",
+      "estado": "expected",
+      "intentos": [
+        {
+          "estado": "passed",
+          "duracionMs": 304
+        }
+      ]
+    },
+    {
+      "archivo": "modulo4-visual.spec.js",
+      "titulo": "03 - El formulario es usable en pantalla de movil",
+      "estado": "expected",
+      "intentos": [
+        {
+          "estado": "passed",
+          "duracionMs": 161
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "fechaUTC": "2026-10-04T06:10:36.715Z",
+  "metodo": "Inspeccion del DOM y estados del navegador asistida por IA; fuente conocida, no busqueda a ciegas ni lector de pantalla real",
+  "inicial": {
+    "nombre": {
+      "placeholder": "Nombre completo",
+      "etiquetas": 0
+    },
+    "imagenes": [
+      {
+        "alt": null,
+        "src": "logo.svg"
+      },
+      {
+        "alt": "imagen",
+        "src": "logo.svg"
+      }
+    ],
+    "casilla": "Estado",
+    "enlaces": [
+      {
+        "texto": "la página principal",
+        "destino": "/"
+      },
+      {
+        "texto": "",
+        "destino": "/ayuda"
+      },
+      {
+        "texto": "Haga clic aquí",
+        "destino": "/"
+      }
+    ],
+    "tabulacion": [
+      {
+        "id": "d-nombre",
+        "indice": 3
+      },
+      {
+        "id": "d-documento",
+        "indice": 2
+      },
+      {
+        "id": "d-edad",
+        "indice": 1
+      }
+    ]
+  },
+  "foco": {
+    "elementoEnfocado": true,
+    "outline": "none",
+    "boxShadow": "none"
+  },
+  "nombreEscrito": {
+    "valor": "Persona Revision",
+    "etiquetas": 0
+  },
+  "error": "Error.",
+  "resultado": {
+    "visible": true,
+    "texto": "Inscripción exitosa\n\nLa persona quedó inscrita.",
+    "rol": null,
+    "ariaLive": null
+  }
+}

@@ -1,5 +1,6 @@
 // @ts-check
 const { test, expect } = require('@playwright/test');
+const { RegistroPage } = require('../pages/RegistroPage');
 
 /**
  * MÓDULO 1 — Pruebas de UI de punta a punta (E2E)
@@ -34,24 +35,26 @@ const { test, expect } = require('@playwright/test');
 const documentoUnico = () => Math.floor(Math.random() * 900_000_000) + 100_000;
 
 test.describe('Módulo 1 — Inscripción de votantes', () => {
+  let registro;
 
   test.beforeEach(async ({ page }) => {
-    await page.goto('/');
+    registro = new RegistroPage(page);
+    await registro.abrir();
   });
 
   test('01 - La página carga con el título correcto', async ({ page }) => {
     await expect(page).toHaveTitle(/Registraduría/);
     await expect(
-      page.getByRole('heading', { name: 'Inscripción de votantes' })
+      registro.encabezado
     ).toBeVisible();
   });
 
   test('02 - El formulario muestra todos sus campos', async ({ page }) => {
-    await expect(page.getByLabel('Nombre completo')).toBeVisible();
-    await expect(page.getByLabel('Número de documento')).toBeVisible();
-    await expect(page.getByLabel('Edad')).toBeVisible();
-    await expect(page.getByLabel('Género')).toBeVisible();
-    await expect(page.getByLabel('La persona está viva')).toBeVisible();
+    await expect(registro.nombre).toBeVisible();
+    await expect(registro.documento).toBeVisible();
+    await expect(registro.edad).toBeVisible();
+    await expect(registro.genero).toBeVisible();
+    await expect(registro.vivo).toBeVisible();
   });
 
   test('03 - Registra a una persona válida', async ({ page }) => {
@@ -60,78 +63,68 @@ test.describe('Módulo 1 — Inscripción de votantes', () => {
     const documento = documentoUnico();
 
     // Act
-    await page.getByLabel('Nombre completo').fill('Ana Martínez');
-    await page.getByLabel('Número de documento').fill(String(documento));
-    await page.getByLabel('Edad').fill('30');
-    await page.getByLabel('Género').selectOption('FEMALE');
-    await page.getByRole('button', { name: 'Registrar votante' }).click();
+    await registro.nombre.fill('Ana Martínez');
+    await registro.documento.fill(String(documento));
+    await registro.edad.fill('30');
+    await registro.genero.selectOption('FEMALE');
+    await registro.botonRegistrar.click();
 
     // Assert
-    await expect(
-      page.getByRole('heading', { name: 'Inscripción exitosa' })
-    ).toBeVisible();
+    await registro.esperarResultado('Inscripción exitosa');
   });
 
   test('04 - Rechaza a una persona menor de edad', async ({ page }) => {
     const documento = documentoUnico();
 
-    await page.getByLabel('Nombre completo').fill('Sara Gómez');
-    await page.getByLabel('Número de documento').fill(String(documento));
-    await page.getByLabel('Edad').fill('17');
-    await page.getByRole('button', { name: 'Registrar votante' }).click();
+    await registro.nombre.fill('Sara Gómez');
+    await registro.documento.fill(String(documento));
+    await registro.edad.fill('17');
+    await registro.botonRegistrar.click();
 
-    await expect(
-      page.getByRole('heading', { name: 'Persona menor de edad' })
-    ).toBeVisible();
-    await expect(page.getByText('18 años o más')).toBeVisible();
+    await registro.esperarResultado('Persona menor de edad');
+    await expect(registro.resultado).toContainText('18 años o más');
   });
 
   test('05 - Rechaza a una persona no viva', async ({ page }) => {
     const documento = documentoUnico();
 
-    await page.getByLabel('Nombre completo').fill('Pedro Ruiz');
-    await page.getByLabel('Número de documento').fill(String(documento));
-    await page.getByLabel('Edad').fill('45');
+    await registro.nombre.fill('Pedro Ruiz');
+    await registro.documento.fill(String(documento));
+    await registro.edad.fill('45');
     // Desmarcar la casilla: la persona no está viva.
-    await page.getByLabel('La persona está viva').uncheck();
-    await page.getByRole('button', { name: 'Registrar votante' }).click();
+    await registro.vivo.uncheck();
+    await registro.botonRegistrar.click();
 
-    await expect(
-      page.getByRole('heading', { name: 'Persona no viva' })
-    ).toBeVisible();
+    await registro.esperarResultado('Persona no viva');
   });
 
   test('06 - Rechaza un documento ya inscrito', async ({ page }) => {
     const documento = documentoUnico();
 
     // Arrange: primera inscripción, que debe salir bien
-    await page.getByLabel('Nombre completo').fill('Luis Torres');
-    await page.getByLabel('Número de documento').fill(String(documento));
-    await page.getByLabel('Edad').fill('40');
-    await page.getByRole('button', { name: 'Registrar votante' }).click();
-    await expect(
-      page.getByRole('heading', { name: 'Inscripción exitosa' })
-    ).toBeVisible();
+    await registro.nombre.fill('Luis Torres');
+    await registro.documento.fill(String(documento));
+    await registro.edad.fill('40');
+    await registro.botonRegistrar.click();
+    await registro.esperarResultado('Inscripción exitosa');
 
     // Act: el mismo documento, otra persona
-    await page.getByLabel('Nombre completo').fill('Luisa Torres');
-    await page.getByRole('button', { name: 'Registrar votante' }).click();
+    await registro.nombre.fill('Luisa Torres');
+    await registro.botonRegistrar.click();
 
     // Assert
-    await expect(
-      page.getByRole('heading', { name: 'Documento ya inscrito' })
-    ).toBeVisible();
+    await registro.esperarResultado('Documento ya inscrito');
   });
 
   test('07 - Valida en el navegador antes de llamar al servicio', async ({ page }) => {
     // Un documento negativo ni siquiera debería viajar al servidor.
-    await page.getByLabel('Nombre completo').fill('Error Esperado');
-    await page.getByLabel('Número de documento').fill('-5');
-    await page.getByLabel('Edad').fill('30');
-    await page.getByRole('button', { name: 'Registrar votante' }).click();
+    await registro.nombre.fill('Error Esperado');
+    await registro.documento.fill('-5');
+    await registro.edad.fill('30');
+    await registro.botonRegistrar.click();
 
     await expect(
-      page.getByText('El documento debe ser un número mayor que cero.')
+      registro.errores.documento
     ).toBeVisible();
   });
 
@@ -141,20 +134,9 @@ test.describe('Módulo 1 — Inscripción de votantes', () => {
     // de accesibilidad, no un detalle estético.
     const documento = documentoUnico();
 
-    await page.getByLabel('Nombre completo').focus();
-    await page.keyboard.type('Teclado Puro');
-    await page.keyboard.press('Tab');
-    await page.keyboard.type(String(documento));
-    await page.keyboard.press('Tab');
-    await page.keyboard.type('33');
+    await registro.inscribirConTeclado(documento);
 
-    // Llegar al botón tabulando y activarlo con Enter.
-    await page.getByRole('button', { name: 'Registrar votante' }).focus();
-    await page.keyboard.press('Enter');
-
-    await expect(
-      page.getByRole('heading', { name: 'Inscripción exitosa' })
-    ).toBeVisible();
+    await registro.esperarResultado('Inscripción exitosa');
   });
 
   test('09 - La regla de edad imposible vive en DOS capas, y hay que probar las dos', async ({ page, request }) => {
@@ -176,12 +158,12 @@ test.describe('Módulo 1 — Inscripción de votantes', () => {
       if (r.url().includes('/register') && r.method() === 'POST') huboLlamada = true;
     });
 
-    await page.getByLabel('Nombre completo').fill('Edad Imposible');
-    await page.getByLabel('Número de documento').fill(String(documentoUnico()));
-    await page.getByLabel('Edad').fill('150');
-    await page.getByRole('button', { name: 'Registrar votante' }).click();
+    await registro.nombre.fill('Edad Imposible');
+    await registro.documento.fill(String(documentoUnico()));
+    await registro.edad.fill('150');
+    await registro.botonRegistrar.click();
 
-    await expect(page.getByText('La edad debe estar entre 0 y 120.')).toBeVisible();
+    await expect(registro.errores.edad).toBeVisible();
     expect(huboLlamada, 'El navegador no debería haber llamado al servicio').toBe(false);
 
     // Capa 2 — la API sí es alcanzable sin pasar por el formulario, y ahí la

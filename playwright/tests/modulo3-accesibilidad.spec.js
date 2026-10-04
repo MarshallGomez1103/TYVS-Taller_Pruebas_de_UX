@@ -1,5 +1,6 @@
 // @ts-check
 const { test, expect } = require('@playwright/test');
+const { RegistroPage } = require('../pages/RegistroPage');
 const AxeBuilder = require('@axe-core/playwright').default;
 
 /**
@@ -34,81 +35,75 @@ const AxeBuilder = require('@axe-core/playwright').default;
  */
 
 test.describe('Módulo 3 — Accesibilidad (WCAG 2.1 AA)', () => {
+  let registro;
+  test.beforeEach(async ({ page }, testInfo) => { registro = new RegistroPage(page); await registro.abrir(); });
 
-  test('01 - La página inicial no tiene violaciones detectables', async ({ page }) => {
-    await page.goto('/');
+  test('01 - La página inicial no tiene violaciones detectables', async ({ page }, testInfo) => {
 
     const resultados = await new AxeBuilder({ page })
       .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
       .analyze();
 
     // Si falla, el mensaje muestra la regla, el impacto y el selector exacto.
+    await testInfo.attach('axe-auditoria.json', { body: JSON.stringify(resultados, null, 2), contentType: 'application/json' });
     expect(
       resultados.violations,
       formatearViolaciones(resultados.violations)
     ).toEqual([]);
   });
 
-  test('02 - La página con errores de validación sigue siendo accesible', async ({ page }) => {
+  test('02 - La página con errores de validación sigue siendo accesible', async ({ page }, testInfo) => {
     // Los estados de error son el punto ciego clásico: se audita la página
     // "feliz" y se olvida cómo queda cuando algo sale mal.
-    await page.goto('/');
-    await page.getByLabel('Número de documento').fill('-5');
-    await page.getByRole('button', { name: 'Registrar votante' }).click();
-    await expect(page.getByText('El documento debe ser un número mayor que cero.')).toBeVisible();
+    await registro.documento.fill('-5');
+    await registro.botonRegistrar.click();
+    await expect(registro.errores.documento).toBeVisible();
 
     const resultados = await new AxeBuilder({ page })
       .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
       .analyze();
 
+    await testInfo.attach('axe-auditoria.json', { body: JSON.stringify(resultados, null, 2), contentType: 'application/json' });
     expect(
       resultados.violations,
       formatearViolaciones(resultados.violations)
     ).toEqual([]);
   });
 
-  test('03 - El resultado de la inscripción se anuncia a lectores de pantalla', async ({ page }) => {
-    await page.goto('/');
+  test('03 - El resultado de la inscripción se anuncia a lectores de pantalla', async ({ page }, testInfo) => {
     const documento = Math.floor(Math.random() * 900_000_000) + 100_000;
 
-    await page.getByLabel('Nombre completo').fill('Ana Accesible');
-    await page.getByLabel('Número de documento').fill(String(documento));
-    await page.getByLabel('Edad').fill('30');
-    await page.getByRole('button', { name: 'Registrar votante' }).click();
+    await registro.nombre.fill('Ana Accesible');
+    await registro.documento.fill(String(documento));
+    await registro.edad.fill('30');
+    await registro.botonRegistrar.click();
 
     // role="status" con aria-live="polite" hace que el lector de pantalla
     // lea el resultado sin que la persona tenga que ir a buscarlo.
     // Sin esto, alguien que no ve la pantalla no se entera de que pasó algo.
-    const status = page.getByRole('status');
+    const status = registro.resultado;
     await expect(status).toBeVisible();
     await expect(status).toContainText('Inscripción exitosa');
+    await expect(status).toHaveAttribute('aria-live', 'polite');
+    const auditoria = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']).analyze();
+    await testInfo.attach('axe-auditoria.json', { body: JSON.stringify(auditoria, null, 2), contentType: 'application/json' });
+    expect(auditoria.violations, formatearViolaciones(auditoria.violations)).toEqual([]);
   });
 
-  test('04 - Existe un enlace para saltar al contenido principal', async ({ page }) => {
+  test('04 - Existe un enlace para saltar al contenido principal', async ({ page }, testInfo) => {
     // WCAG 2.4.1: quien navega con teclado no debería tener que tabular por
     // toda la cabecera en cada página. El enlace está oculto hasta recibir foco.
-    await page.goto('/');
     await page.keyboard.press('Tab');
 
-    const salto = page.getByRole('link', { name: 'Saltar al contenido principal' });
+    const salto = registro.salto;
     await expect(salto).toBeFocused();
   });
 
-  test('05 - Todos los campos tienen etiqueta asociada', async ({ page }) => {
-    await page.goto('/');
+  test('05 - Todos los campos tienen etiqueta asociada', async ({ page }, testInfo) => {
 
     // Un input sin <label for> es invisible para un lector de pantalla:
     // se anuncia como "cuadro de edición", sin decir de qué.
-    const camposSinEtiqueta = await page.evaluate(() => {
-      const campos = Array.from(document.querySelectorAll('input, select, textarea'));
-      return campos
-        .filter((c) => {
-          const tieneLabel = document.querySelector(`label[for="${c.id}"]`);
-          const tieneAria = c.getAttribute('aria-label') || c.getAttribute('aria-labelledby');
-          return !tieneLabel && !tieneAria;
-        })
-        .map((c) => c.outerHTML.slice(0, 80));
-    });
+    const camposSinEtiqueta = await registro.camposSinEtiqueta();
 
     expect(camposSinEtiqueta).toEqual([]);
   });

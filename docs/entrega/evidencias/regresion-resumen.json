@@ -1,0 +1,13 @@
+{
+  "estadisticas": {
+    "startTime": "2026-10-04T04:25:43.237Z",
+    "duration": 4972.629999999999,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  },
+  "errores": [
+    "Error: expect(page).toHaveScreenshot(expected) failed\n\n  140561 pixels (ratio 0.13 of all image pixels) are different.\n\n  Snapshot: formulario-vacio.png\n\nCall log:\n  - Expect \"toHaveScreenshot(formulario-vacio.png)\" with timeout 5000ms\n    - verifying given screenshot expectation\n  - taking page screenshot\n    - disabled all CSS animations\n  - waiting for fonts to load...\n  - fonts loaded\n  - 140561 pixels (ratio 0.13 of all image pixels) are different.\n  - waiting 100ms before taking screenshot\n  - taking page screenshot\n    - disabled all CSS animations\n  - waiting for fonts to load...\n  - fonts loaded\n  - captured a stable screenshot\n  - 140561 pixels (ratio 0.13 of all image pixels) are different.\n"
+  ]
+}

@@ -38,3 +38,7 @@ ia-resultados.json
 .DS_Store
 Thumbs.db
 __pycache__/
+
+# Resultados temporales del experimento que falla a propósito.
+test-results-regresion/
+playwright-report-regresion/

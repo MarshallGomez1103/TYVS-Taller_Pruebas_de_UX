@@ -75,6 +75,9 @@ public class RegistroPage extends BasePage {
 
     /** Titulo del mensaje de resultado, esperando a que aparezca. */
     public String resultado() {
+        // La respuesta anterior sigue visible durante un segundo envío.
+        // El botón vuelve a habilitarse después de actualizar el resultado.
+        waitForClickable(BOTON_REGISTRAR);
         return getText(RESULTADO_TITULO);
     }
 
@@ -98,6 +101,6 @@ public class RegistroPage extends BasePage {
 
     /** Genera un documento distinto en cada llamada. */
     public static int documentoUnico() {
-        return (int) (Math.random() * 900000) + 100000;
+        return (int) (Math.random() * 900000000) + 100000;
     }
 }

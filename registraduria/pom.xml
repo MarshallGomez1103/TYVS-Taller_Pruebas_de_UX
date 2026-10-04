@@ -92,6 +92,9 @@
               <goal>verify</goal>
             </goals>
             <configuration>
+              <!-- El JAR de Boot guarda las clases en BOOT-INF/classes;
+                   Failsafe necesita las clases normales en su classpath. -->
+              <classesDirectory>${project.build.outputDirectory}</classesDirectory>
               <includes>
                 <include>**/*IT.java</include>
               </includes>

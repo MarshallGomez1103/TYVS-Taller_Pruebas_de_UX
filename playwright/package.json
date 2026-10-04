@@ -18,7 +18,9 @@
     "ia:evaluar-auditoria": "node ia/evaluar-auditoria.js",
     "ia:preparar-generacion": "node ia/preparar-generacion.js",
     "ia:sabotaje": "node ia/sabotaje.js",
-    "ia:evaluar-plan": "node ia/evaluar-plan.js"
+    "ia:evaluar-plan": "node ia/evaluar-plan.js",
+    "test:regresion:demo": "playwright test --config experimentos/regresion.config.js",
+    "evidencia": "node scripts/exportar-evidencia.js"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.10.1",

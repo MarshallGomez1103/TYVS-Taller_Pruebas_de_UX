@@ -16,7 +16,7 @@ permissions:
 
 jobs:
   playwright:
-    name: Playwright (E2E + accesibilidad)
+    name: Playwright (E2E + accesibilidad + verificación Java)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -27,8 +27,8 @@ jobs:
           java-version: '17'
           cache: maven
 
-      - name: Compilar el sistema bajo prueba
-        run: mvn -B -DskipTests clean package
+      - name: Verificar y compilar el sistema bajo prueba
+        run: mvn -B clean verify
         working-directory: registraduria
 
       - uses: actions/setup-node@v4

@@ -1,0 +1,12 @@
+{
+  "suites": [
+    {
+      "name": "edu.unisabana.tyvs.registry.delivery.rest.RegistryControllerIT",
+      "tests": "1",
+      "errors": "0",
+      "skipped": "0",
+      "failures": "0",
+      "time": "1.874"
+    }
+  ]
+}

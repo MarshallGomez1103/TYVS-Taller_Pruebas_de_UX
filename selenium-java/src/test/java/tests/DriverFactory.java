@@ -19,6 +19,8 @@ public class DriverFactory {
         // chromedriver a mano ni una libreria extra.
 
         ChromeOptions options = new ChromeOptions();
+        String binary = System.getProperty("chrome.binary");
+        if (binary != null && !binary.isBlank()) options.setBinary(binary);
 
         // Headless si se pasa -Dheadless=true (usado en CI)
         boolean headless = Boolean.parseBoolean(System.getProperty("headless", "false"));

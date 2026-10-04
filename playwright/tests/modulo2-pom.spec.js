@@ -1,5 +1,5 @@
 // @ts-check
-const { test } = require('@playwright/test');
+const { test, expect } = require('@playwright/test');
 const { RegistroPage } = require('../pages/RegistroPage');
 
 /**
@@ -47,4 +47,39 @@ test.describe('Modulo 2 — Reglas de inscripcion (con POM)', () => {
     await registro.inscribir({ documento: doc, nombre: 'Segunda Vez' });
     await registro.esperarResultado('Documento ya inscrito');
   });
+  for (const edad of [0, 16, 120]) {
+    test(`Límite adicional de edad: ${edad}`, async () => {
+      await registro.inscribir({ documento: RegistroPage.documentoUnico(), edad });
+      await registro.esperarResultado(edad < 18 ? 'Persona menor de edad' : 'Inscripción exitosa');
+    });
+  }
+
+  for (const [campo, valor] of [['nombre', '   '], ['documento', '0'], ['documento', '1.5'], ['edad', '18.9'], ['edad', ''], ['edad', '-1'], ['edad', '121']]) {
+    test(`No envía ${campo} inválido: ${JSON.stringify(valor)}`, async () => {
+      const envios = registro.observarEnvios();
+      await registro.completar({ documento: RegistroPage.documentoUnico() });
+      await registro[campo].fill(valor);
+      await registro.enviar();
+      await expect(registro.errores[campo]).toBeVisible();
+      await registro.esperarResultado('Revise los datos');
+      expect(envios).toEqual([]);
+    });
+  }
+
+  test('La ayuda informa que 18 años también está permitido', async () => {
+    await expect(registro.ayudaEdad).toBeVisible();
+    await registro.inscribir({ documento: RegistroPage.documentoUnico(), edad: 18 });
+    await registro.esperarResultado('Inscripción exitosa');
+  });
+
+  test('Recupera el formulario después de corregir un error', async () => {
+    await registro.inscribir({ documento: RegistroPage.documentoUnico(), edad: 121 });
+    await expect(registro.errores.edad).toBeVisible();
+    await registro.edad.fill('30');
+    await registro.enviar();
+    await registro.esperarResultado('Inscripción exitosa');
+    await expect(registro.errores.edad).toBeHidden();
+    await expect(registro.edad).not.toHaveAttribute('aria-invalid', 'true');
+  });
+
 });

@@ -1,0 +1,33 @@
+{
+  "estadisticas": {
+    "startTime": "2026-10-04T04:16:34.536Z",
+    "duration": 22365.157000000003,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 3,
+    "flaky": 0
+  },
+  "casos": [
+    {
+      "titulo": "No envía documento inválido: \"1.5\"",
+      "ok": false,
+      "resultados": [
+        "failed"
+      ]
+    },
+    {
+      "titulo": "No envía edad inválido: \"18.9\"",
+      "ok": false,
+      "resultados": [
+        "failed"
+      ]
+    },
+    {
+      "titulo": "La ayuda informa que 18 años también está permitido",
+      "ok": false,
+      "resultados": [
+        "failed"
+      ]
+    }
+  ]
+}

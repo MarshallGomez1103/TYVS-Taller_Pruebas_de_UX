@@ -103,8 +103,12 @@ form.addEventListener('submit', async function (evento) {
 
   const datos = {
     name: document.getElementById('nombre').value.trim(),
-    id: parseInt(document.getElementById('documento').value, 10),
-    age: parseInt(document.getElementById('edad').value, 10),
+    // Number conserva los decimales para que Number.isInteger los rechace.
+    // El valor vacío se convierte en NaN: Number('') sería cero.
+    id: document.getElementById('documento').value.trim() === ''
+      ? NaN : Number(document.getElementById('documento').value),
+    age: document.getElementById('edad').value.trim() === ''
+      ? NaN : Number(document.getElementById('edad').value),
     gender: document.getElementById('genero').value,
     alive: document.getElementById('vivo').checked,
   };

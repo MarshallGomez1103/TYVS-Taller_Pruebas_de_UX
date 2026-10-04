@@ -1,0 +1,28 @@
+{
+  "suites": [
+    {
+      "name": "edu.unisabana.tyvs.registry.AppTest",
+      "tests": "1",
+      "errors": "0",
+      "skipped": "0",
+      "failures": "0",
+      "time": "0.018"
+    },
+    {
+      "name": "edu.unisabana.tyvs.registry.application.usecase.RegistryTest",
+      "tests": "2",
+      "errors": "0",
+      "skipped": "0",
+      "failures": "0",
+      "time": "0.101"
+    },
+    {
+      "name": "edu.unisabana.tyvs.registry.application.usecase.RegistryWithMockTest",
+      "tests": "1",
+      "errors": "0",
+      "skipped": "0",
+      "failures": "0",
+      "time": "0.466"
+    }
+  ]
+}

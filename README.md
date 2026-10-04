@@ -1,5 +1,10 @@
 # Taller de Pruebas de UI y UX
 
+**Entrega: Elioth Gomez.** [Trabajo desarrollado, ejecución y pendientes](docs/entrega/LEEME.md).
+
+El material y los ejemplos de base son del profesor César Augusto Vega Fernández. Las modificaciones, mediciones de esta entrega y su estado están documentados por separado.
+
+
 Este taller cubre dos cosas que suelen confundirse, y la distinción entre ellas es su principal objetivo de aprendizaje:
 
 - **Pruebas de UI (E2E)**: automatizan un navegador para verificar que la interfaz **funciona**. Son pruebas funcionales.
@@ -74,9 +79,9 @@ Eso importa por tres razones:
 
 | Herramienta | Versión | Para qué |
 |---|---|---|
-| JDK | 17 o superior | compilar y ejecutar la Registraduría |
+| JDK | 17 (versión verificada) | compilar y ejecutar la Registraduría |
 | Maven | 3.8+ | construir el proyecto |
-| Node.js | 18 o superior | ejecutar Playwright |
+| Node.js | 20 o superior | ejecutar Playwright |
 | Chrome | reciente | pista de Selenium |
 
 > **No hace falta descargar ChromeDriver a mano.** Selenium 4.6 en adelante incluye *Selenium Manager*, que resuelve el driver automáticamente. (Versiones anteriores de este taller usaban WebDriverManager para eso; ya es innecesario.)
@@ -108,7 +113,7 @@ Y abra <http://localhost:8080> en el navegador: debería ver el formulario de in
 
 ### 3. Ejecute las pruebas
 
-**Playwright** (levanta el servicio solo si no lo encuentra corriendo):
+**Playwright** (compila y levanta su propio servicio; `REUSE_SERVER=true` permite usar uno existente):
 
 ```bash
 cd playwright

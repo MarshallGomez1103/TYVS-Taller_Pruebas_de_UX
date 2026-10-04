@@ -1,5 +1,6 @@
 // @ts-check
 const { test, expect } = require('@playwright/test');
+const { RegistroPage } = require('../pages/RegistroPage');
 
 /**
  * MODULO 4 — Regresion visual
@@ -29,10 +30,12 @@ const { test, expect } = require('@playwright/test');
  * oficial de Playwright, no en la maquina de cada quien.
  */
 test.describe('Modulo 4 — Regresion visual', () => {
+  let registro;
+  test.beforeEach(async ({ page }) => { registro = new RegistroPage(page); });
 
   test('01 - El formulario vacio se ve como se espera', async ({ page }) => {
-    await page.goto('/');
-    await expect(page.getByRole('button', { name: 'Registrar votante' })).toBeVisible();
+    await registro.abrir();
+    await expect(registro.botonRegistrar).toBeVisible();
 
     await expect(page).toHaveScreenshot('formulario-vacio.png', {
       fullPage: true,
@@ -43,31 +46,29 @@ test.describe('Modulo 4 — Regresion visual', () => {
   });
 
   test('02 - El mensaje de rechazo se ve como se espera', async ({ page }) => {
-    await page.goto('/');
+    await registro.abrir();
 
-    await page.getByLabel('Nombre completo').fill('Sara Gomez');
-    await page.getByLabel('Número de documento').fill('777001');
-    await page.getByLabel('Edad').fill('17');
-    await page.getByRole('button', { name: 'Registrar votante' }).click();
-    await expect(page.getByRole('heading', { name: 'Persona menor de edad' })).toBeVisible();
+    await registro.nombre.fill('Sara Gomez');
+    await registro.documento.fill('777001');
+    await registro.edad.fill('17');
+    await registro.botonRegistrar.click();
+    await registro.esperarResultado('Persona menor de edad');
 
     // Solo el bloque de resultado: acotar la captura la vuelve mucho menos
     // fragil que fotografiar la pagina entera.
-    await expect(page.getByRole('status')).toHaveScreenshot('resultado-rechazo.png', {
+    await expect(registro.resultado).toHaveScreenshot('resultado-rechazo.png', {
       maxDiffPixelRatio: 0.02,
     });
   });
 
   test('03 - El formulario es usable en pantalla de movil', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 812 });
-    await page.goto('/');
+    await registro.abrir();
 
     // Comprobacion objetiva antes de la visual: la pagina no debe permitir
     // desplazamiento horizontal. Es el sintoma numero uno de un layout roto
     // en movil, y se puede afirmar sin capturas.
-    const desbordaHorizontal = await page.evaluate(
-      () => document.documentElement.scrollWidth > document.documentElement.clientWidth
-    );
+    const desbordaHorizontal = await registro.desbordaHorizontal();
     expect(desbordaHorizontal).toBe(false);
 
     await expect(page).toHaveScreenshot('formulario-movil.png', {

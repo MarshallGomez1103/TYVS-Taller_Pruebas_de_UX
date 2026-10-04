@@ -1,0 +1,13 @@
+{
+  "estadisticas": {
+    "startTime": "2026-10-04T04:33:15.568Z",
+    "duration": 11784.769,
+    "expected": 40,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "origen": "clon local independiente del commit caf3050",
+  "instalacion": "npm ci desde package-lock, con paquetes y navegador descargados previamente",
+  "ejecucion": "npm test sin JAR precompilado; compilación y servicio automáticos"
+}

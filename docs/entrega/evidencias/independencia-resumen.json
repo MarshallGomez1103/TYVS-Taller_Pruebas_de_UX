@@ -1,0 +1,11 @@
+{
+  "estadisticas": {
+    "startTime": "2026-10-04T04:30:42.610Z",
+    "duration": 9020.028,
+    "expected": 52,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "comando": "npm run test:e2e -- --fully-parallel --workers=4 --repeat-each=2"
+}
